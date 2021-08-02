@@ -1,8 +1,9 @@
 import {motion, useAnimation} from 'framer-motion'
 import styled from 'styled-components'
 import { useEffect, useRef, useState } from 'react'
+import { Menu } from '@material-ui/icons'
 
-function HeroSection() {
+function HeroSection({r}) {
     const [img1, set_img1] = useState("https://images.unsplash.com/photo-1503039153293-d4d2ba067754?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80")
   const [img2, set_img2] = useState("https://images.unsplash.com/photo-1560574188-6a6774965120?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80")
   const [hght, set_hght] = useState(350)
@@ -121,34 +122,9 @@ function HeroSection() {
       clearTimeout(timerRef.current)
     };
   }, [change]);
-
-  //top nav link
-  const NavLink = (title, i) =>{
-    return(
-      <TopNavLink className="cursor-pointer" onMouseEnter={()=>{set_motion("hover"), set_active_link(i)}} onMouseLeave={()=>{set_motion("hover_leave"), set_active_link(i)}}   onClick={()=>{set_active_link(i), set_motion("click"), set_link_click(true)}} key={i}>
-        <div>
-         {title}
-        </div> 
-        {(typeof(active_link) !== 'undefined' && link_clicked !== true && i == active_link && typeof(motion) !== "undefined" && motion=="hover_leave")  && <LinkUnderline animate={{width: ["100%", "0%"]}} transition={{duration: 1}} custom={i} >  </LinkUnderline>}
-        {(typeof(active_link) !== 'undefined' && i == active_link && typeof(motion) !== "undefined" && (motion == "click" || motion == "hover") ) && <LinkUnderline animate={{width: ["0%", "100%"]}} transition={{duration: 0.5}} custom={i} >  </LinkUnderline>}  
-      </TopNavLink>
-    )
-  }
     return (
-        <>
+        <div ref={r} >
             <BackDrop s={w_size.width}  back_image={img2}>
-            <TopNav className=" flex items-center justify-between pl-4 pr-4">
-            <div className="w-28 h-20">
-
-            </div>
-            <div className="hidden md:flex items-center  justify-around w-3/4">
-                {top_nav_links.map((title)=>{
-                return(
-                    NavLink(title, top_nav_links.indexOf(title))
-                )              
-                })}
-            </div>
-            </TopNav>
             <OverlayContainer className="flex flex-col " s={w_size.width} >
                 <div className="h-80 flex items-center justify-center w-full">
                 <OverlayText s={w_size.width} animate={overlay_text_animation} className="flex items-center justify-center" >
@@ -169,7 +145,7 @@ function HeroSection() {
             </Eimage>
             </Cont>
         </BackDrop>
-        </>
+        </div>
     )
 }
 
@@ -186,34 +162,6 @@ const OverlayContainer = styled.div`
   align-items: center;
   justify-content: center;
   z-index: 1;
-`
-const TopNav = styled.div`
-  position: absolute;
-  top: 0;
-  width: 100%;
-  height: 50px;
-  z-index: 2;
-
-`
-const TopNavLink = styled.div`
-  height: 30px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  >div{
-    font-weight: 400;
-    color: white;
-    font-size: 30px;
-    font-family: 'Bebas Neue'
-  }
-`
-
-const LinkUnderline = styled(motion.div)`
-  height: 0px;
-  background-color: yellow;
-  padding-bottom: 5px;
-  width: 0%;
 `
 
 const OverlayText = styled(motion.div)`

@@ -1,22 +1,25 @@
 import styled from "styled-components"
+import Image from "next/image"
 
-function AboutSection() {
+function AboutSection({w_size, r}) {
     return (
-        <SectionContainer>
+        <SectionContainer ref={r} >
             <Overlay>
-                <TopSection className="flex items-center justify-start pt-4" >
-                    <div className="flex w-1/2 flex-col">
+                <TopSection w_size={w_size}  className="flex items-center justify-start pt-4" >
+                    <div className="flex w-3/4 flex-col">
                     <h1>We help build the future</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna </p>                    </div>
+                    <p>PSRM assists stakeholders in identification,planning ,capital design and construction programs and in understanding how project teams are selected,procured/contracted , and coordinated for successful project delivery </p>                    </div>
                     
                 </TopSection>
-                <BottomSection className="w-full flex flex-col md:flex-row">
-                    <div className="w-full md:w-1/2 flex items-center justify-start h-full">
-                        <img src="https://images.unsplash.com/photo-1454789415558-bdda08f4eabb?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="" />
+                <BottomSection w_size={w_size} className="w-full flex flex-col space-around md:flex-row">
+                    <div className=" h-80 md:w-1/2 flex items-center justify-start ">
+                        <Image   src={"https://images.unsplash.com/photo-1454789415558-bdda08f4eabb?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"} width={300} height={300}  />
                     </div>
-                    <div className="w-full md:w-1/2 flex flex-col items-start justify-center h-full">
-                    <h1>Our Mission</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut </p>
+                    <div className="flex md:w-1/2 flex-col items-start justify-center h-full">
+                    <h1 className="text-8xl text-center md:text-left ">Our Mission</h1>
+                    <p className="text-1xl text-center md:text-left" >
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                    </p>
                     </div>
                 </BottomSection>
             </Overlay>
@@ -60,14 +63,37 @@ const TopSection = styled.div`
             font-size: 100px;
             font-weight: 900;
             color: white;
-            font-family: 'Bebas Neue'
+            font-family: 'Bebas Neue';
+            @media(min-width: 800px){
+                font-size:100px;
+            }
+            @media(max-width: 800px){
+                font-size: 80px;
+            }
+            @media(max-width: 800px){
+                font-size:60px;
+            }
+            @media(max-width: 600px){
+                font-size:40px;
+            }
         }
         >p{
-            margin-top: 10px;
-            font-size: 28px;
+            @media(min-width: 800px){
+                font-size: 24px;
+            }
+            @media(max-width: 800px){
+                font-size: 22px;
+            }
+            @media(max-width: 800px){
+                font-size:20px;
+            }
+            @media(max-width: 600px){
+                font-size:18px;
+            }
+            margin-top: 10px;            
             font-weight: 400;
             color: white;
-            font-family: 'Roboto'
+            font-family: 'Roboto', sans-serif;
         }
     }
     
@@ -75,26 +101,22 @@ const TopSection = styled.div`
 const BottomSection = styled.div`
     width: 100%;
     background-color: rgba(0, 0, 0, 0.8);
-    height: 524px;
+    min-height: 524px;
     padding-left: 40px; 
     padding-right: 40px;
+    padding-top: 40px;
+    padding-bottom: 30px;
     >div{
-        img{
-            width: 400px;
-            height: 400px;
-        }
         >h1{
-            font-size: 70px;
             font-weight: 900;
             color: white;
             font-family: 'Bebas Neue'
         }
         >p{
             margin-top: 10px;
-            font-size: 28px;
             font-weight: 400;
             color: white;
-            font-family: 'Roboto'
+            font-family: 'Roboto', sans-serif;
         }
     }
 `

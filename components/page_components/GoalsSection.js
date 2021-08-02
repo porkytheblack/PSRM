@@ -33,14 +33,14 @@ function GoalsSection() {
         }
     ]
 
-    const goal = (Icon, text, pos, img) => {
+    const goal = (Icon, text, pos, img, i) => {
         return(
-            <div className="flex items-center w-full justify-between flex-row">
+            <div key={i} className="flex items-center w-full justify-between  mb-8 flex-row">
                 <GoalIcon className={`flex flex-row ${pos=="left"? "order-1" : "order-2"} items-center justify-center`}>
                 {Icon && <Icon style={{fontSize: 70, color: "black"}} />}
                 {img && <Image src={img} width={100} height={100}  alt="picture" /> }
                 </GoalIcon>
-                <GoalText className={`flex flex-row ${pos=="left"? "order-2" : "order-1"} items-center justify-center`}>
+                <GoalText className={`flex text-6xl flex-row ${pos=="left"? "order-2" : "order-1"} items-center justify-center`}>
                     {text}
                 </GoalText>
                 
@@ -51,7 +51,7 @@ function GoalsSection() {
     return (
         <SectionContainer>
             <SectionHeader>
-                <h1>
+                <h1 className="text-center text-8xl sm:text-left" >
                 Our Goals
                 </h1>
             </SectionHeader>
@@ -59,7 +59,7 @@ function GoalsSection() {
                 {
                     display_values.map((obj)=>{
                         return(
-                            goal(obj.icon, obj.text, obj.pos, obj.img)
+                            goal(obj.icon, obj.text, obj.pos, obj.img, display_values.indexOf(obj))
                         )
                     })
                 }
@@ -78,20 +78,22 @@ const SectionContainer = styled.div`
     margin-bottom: 20px;
 `
 const SectionHeader = styled.div`
+width: 100%;
     >h1{
-        font-size: 100px;
         color: black;
         font-weight: 900;
         font-family: 'Bebas Neue';
-        &:after{
-            margin-top: 60px;
-            margin-left: 40px;
-            position: absolute;
-            content: " ";
-            height: 10px;
-            width: 70%;
-            background-color: yellow;
-            padding-bottom: 10px;
+        @media(min-width: 640px){
+            &:after{
+                margin-top: 40px;
+                margin-left: 40px;
+                position: absolute;
+                content: " ";
+                height: 10px;
+                width: 60%;
+                background-color: yellow;
+                padding-bottom: 10px;
+            }
         }
     }
 `
@@ -102,7 +104,6 @@ const GoalIcon = styled.div`
     border-bottom: 10px solid black;
 `
 const GoalText = styled.div`
-    font-size: 70px;
     font-weight: 900;
     color: black;
     font-family: 'Bebas Neue';
